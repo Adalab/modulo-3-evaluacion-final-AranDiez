@@ -7,7 +7,7 @@ function MovieSceneItem(props) {
       <h2>
         {props.movie.title} - {props.movie.year}
       </h2>
-      <p>{props.movie.full_line}</p>
+      <p>"{props.movie.full_line}"</p>
     </section>
   );
 }
