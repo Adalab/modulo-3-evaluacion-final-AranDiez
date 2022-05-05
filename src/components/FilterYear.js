@@ -1,3 +1,5 @@
+import '../styles/FilterYear.scss';
+
 function FilterYear(props) {
   const handleYearSearch = (ev) => {
     props.handleFilterYear(ev.target.value);
@@ -13,13 +15,22 @@ function FilterYear(props) {
   };
   return (
     <>
-      <label className="" htmlFor="movieSearchYear">
-        Year
-      </label>
-      <select name="movieSearchYear" id="year" onChange={handleYearSearch}>
-        <option value="">All</option>
-        {renderYears()}
-      </select>
+      <div className="main__form--year">
+        <label className="main__form--movieLabelYear" htmlFor="movieSearchYear">
+          Year
+        </label>
+        <select
+          className="main__form--movieInputYear"
+          name="movieSearchYear"
+          id="year"
+          onChange={handleYearSearch}
+        >
+          <option className="main__form--movieOptYear" value="">
+            All
+          </option>
+          {renderYears()}
+        </select>
+      </div>
     </>
   );
 }

@@ -4,14 +4,14 @@ import '../styles/MovieSceneList.scss';
 function MovieSceneList(props) {
   const moviesElements = props.movies.map((movie) => {
     return (
-      <li key={movie.id} className="li">
+      <li key={movie.id} className="main__section1--movie">
         <MovieSceneItem movie={movie} />
       </li>
     );
   });
   return (
-    <section>
-      <ul>{moviesElements}</ul>
+    <section className="main__section1">
+      <ul className="main__section1--movies">{moviesElements}</ul>
     </section>
   );
 }

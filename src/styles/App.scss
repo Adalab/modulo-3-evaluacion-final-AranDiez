@@ -1,0 +1,14 @@
+@import '../styles/variables';
+
+.body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $fontMain;
+  background-color: $lightBlue;
+  color: $darkBlue;
+}
+.main__title {
+  text-align: center;
+  font-size: 3.125rem;
+}

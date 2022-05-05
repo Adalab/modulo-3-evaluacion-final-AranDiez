@@ -7,6 +7,7 @@ import MovieSceneList from './MovieSceneList';
 import Filters from './Filters';
 import MovieSceneDetail from './MovieSceneDetail';
 import ls from '../services/localStorage';
+import '../styles/App.scss';
 
 const App = () => {
   const [dataMovies, setDataMovies] = useState(ls.get('movies', []));
@@ -61,29 +62,27 @@ const App = () => {
 
   return (
     <>
-      <h1 className="title">Owen Wilson WOW</h1>
-      <div className="section1">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Filters
-                  handleFilterMovie={handleFilterMovie}
-                  filterMovie={filterMovie}
-                  handleFilterYear={handleFilterYear}
-                  years={getYear()}
-                />
-                <MovieSceneList movies={movieFilters} />
-              </>
-            }
-          />
-          <Route
-            path="/movie/:movieId"
-            element={<MovieSceneDetail user={movieFound} />}
-          />
-        </Routes>
-      </div>
+      <h1 className="main__title">Owen Wilson WOW</h1>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Filters
+                handleFilterMovie={handleFilterMovie}
+                filterMovie={filterMovie}
+                handleFilterYear={handleFilterYear}
+                years={getYear()}
+              />
+              <MovieSceneList movies={movieFilters} />
+            </>
+          }
+        />
+        <Route
+          path="/movie/:movieId"
+          element={<MovieSceneDetail user={movieFound} />}
+        />
+      </Routes>
     </>
   );
 };
