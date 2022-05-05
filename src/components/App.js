@@ -7,6 +7,7 @@ import Filters from './Filters';
 const App = () => {
   const [dataMovies, setDataMovies] = useState([]);
   const [filterMovie, setFilterMovie] = useState('');
+  const [filterYear, setFilterYear] = useState('');
 
   useEffect(() => {
     getApiData().then((dataClean) => {
@@ -17,14 +18,27 @@ const App = () => {
   const handleFilterMovie = (value) => {
     setFilterMovie(value);
   };
+  const handleFilterYear = (value) => {
+    setFilterYear(value);
+  };
   const movieFilters = dataMovies.filter((item) => {
     return item.title.toLowerCase().includes(filterMovie.toLowerCase());
   });
+
+  const getYear = () => {
+    const movieYears = dataMovies.map((movie) => movie.year);
+    const uniqueYear = movieYears.filter((year, index) => {
+      return movieYears.indexOf(year) === index;
+    });
+    return uniqueYear;
+  };
   return (
     <>
       <Filters
         handleFilterMovie={handleFilterMovie}
         filterMovie={filterMovie}
+        handleFilterYear={handleFilterYear}
+        years={getYear()}
       />
       <MovieSceneList movies={movieFilters} />
     </>
@@ -43,3 +57,9 @@ export default App;
 // 8 - Creamos una variable de estado donde yo filtro por pelicula. Se modifica cuando escribe en el input la usuaria
 // 9 - => FilterMovie
 // 10 - userlist es quien pinta, necesitamos mandarle los datos ya filtrados. Creamos la constante movieFilters y ahi haremos los filters.
+// 11 - Ahora hago el filter por year. He creado el componente FilterYear que es hijo de Filters
+// 12 - => Filter Year
+// 13 - creo una funcion getYear que me permita sacar los años de movieFilters. Creo un array que solo tenga los años
+// 14 - para evitar que se repitan los años. guardo en uniqueYears la comparación de si ya esta el año o no (index of). retornamos solo aquellos que no estan en uniqueYear. Se lo mandamos a Filters para mandarlo a Filteryear
+// 151 - => FilterYear
+//  - ahora tengo que concatenar el filtro de año con el otro para afectar a movieFilters

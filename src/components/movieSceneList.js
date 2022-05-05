@@ -2,10 +2,10 @@ import MovieSceneItem from './MovieSceneItem';
 import '../styles/MovieSceneList.scss';
 
 function MovieSceneList(props) {
-  const moviesElements = props.movies.map((item) => {
+  const moviesElements = props.movies.map((movie) => {
     return (
-      <li key={item.id} className="li">
-        <MovieSceneItem movie={item} />
+      <li key={movie.id} className="li">
+        <MovieSceneItem movie={movie} />
       </li>
     );
   });
