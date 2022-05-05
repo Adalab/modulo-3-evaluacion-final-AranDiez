@@ -11,4 +11,14 @@
 .main__title {
   text-align: center;
   font-size: 3.125rem;
+  animation: main__title 1s infinite ease-in-out alternate;
+}
+
+@keyframes main__title {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1.2);
+  }
 }
