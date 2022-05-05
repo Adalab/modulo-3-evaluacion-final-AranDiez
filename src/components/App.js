@@ -7,7 +7,7 @@ import Filters from './Filters';
 const App = () => {
   const [dataMovies, setDataMovies] = useState([]);
   const [filterMovie, setFilterMovie] = useState('');
-  const [filterYear, setFilterYear] = useState('');
+  const [filterYears, setFilterYears] = useState('');
 
   useEffect(() => {
     getApiData().then((dataClean) => {
@@ -19,11 +19,20 @@ const App = () => {
     setFilterMovie(value);
   };
   const handleFilterYear = (value) => {
-    setFilterYear(value);
+    setFilterYears(value);
   };
-  const movieFilters = dataMovies.filter((item) => {
-    return item.title.toLowerCase().includes(filterMovie.toLowerCase());
-  });
+
+  const movieFilters = dataMovies
+    .filter((item) => {
+      return item.title.toLowerCase().includes(filterMovie.toLowerCase());
+    })
+    .filter((item) => {
+      if (filterYears.length === 0) {
+        return true;
+      } else {
+        return filterYears.includes(item.year);
+      }
+    });
 
   const getYear = () => {
     const movieYears = dataMovies.map((movie) => movie.year);
@@ -61,5 +70,8 @@ export default App;
 // 12 - => Filter Year
 // 13 - creo una funcion getYear que me permita sacar los años de movieFilters. Creo un array que solo tenga los años
 // 14 - para evitar que se repitan los años. guardo en uniqueYears la comparación de si ya esta el año o no (index of). retornamos solo aquellos que no estan en uniqueYear. Se lo mandamos a Filters para mandarlo a Filteryear
-// 151 - => FilterYear
-//  - ahora tengo que concatenar el filtro de año con el otro para afectar a movieFilters
+// 15 - => FilterYear
+// 16 - ahora tengo que concatenar el filtro de año con el otro para afectar a movieFilters
+// 17 - creamos filterYear como array vacio. creo handleFilterYear y es la encargada de modificar la variable de estado (filterYear) que contenga los años por los que quiero filtrar
+// 18 - uso un spread para decir que meta lo que habia mas lo que se manda
+// 19 - hago un condicional que diga que si la longitud es 0 que nos return all (true). Si no, es que hay algo guardado, return los años que tengan incluido el año seleccionado.

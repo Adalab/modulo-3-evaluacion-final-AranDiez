@@ -17,7 +17,7 @@ function FilterYear(props) {
         Year
       </label>
       <select name="movieSearchYear" id="year" onChange={handleYearSearch}>
-        <option value="">Year</option>
+        <option value="">All</option>
         {renderYears()}
       </select>
     </>
@@ -26,5 +26,4 @@ function FilterYear(props) {
 export default FilterYear;
 
 // 12 - Me llega handleFilterYear para poder hacer lifting cuando en el select hay un cambio (onChange)
-// 15 - Hemos recibido getYear por props. Tenemos que transformar en array de años en un listado de options
-//key={index}
+// 15 - Hemos recibido getYear por props. Tenemos que transformar en array de años en un listado de options.m Llamamos a ese array dentro de option
