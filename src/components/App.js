@@ -6,17 +6,26 @@ import getApiData from '../services/moviesApi';
 import MovieSceneList from './MovieSceneList';
 import Filters from './Filters';
 import MovieSceneDetail from './MovieSceneDetail';
+import ls from '../services/localStorage';
 
 const App = () => {
-  const [dataMovies, setDataMovies] = useState([]);
-  const [filterMovie, setFilterMovie] = useState('');
-  const [filterYears, setFilterYears] = useState('');
+  const [dataMovies, setDataMovies] = useState(ls.get('movies', []));
+  const [filterMovie, setFilterMovie] = useState(ls.get('filterMovie', ''));
+  const [filterYears, setFilterYears] = useState(ls.get('filterYears', ''));
 
   useEffect(() => {
-    getApiData().then((dataClean) => {
-      setDataMovies(dataClean);
-    });
+    if (dataMovies.length === 0) {
+      getApiData().then((dataClean) => {
+        setDataMovies(dataClean);
+      });
+    }
   }, []);
+
+  useEffect(() => {
+    ls.set('movies', dataMovies);
+    ls.set('filterMovie', filterMovie);
+    ls.set('filterYears', filterYears);
+  }, [dataMovies, filterMovie, filterYears]);
 
   const handleFilterMovie = (value) => {
     setFilterMovie(value);
@@ -53,27 +62,28 @@ const App = () => {
   return (
     <>
       <h1 className="title">Owen Wilson WOW</h1>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Filters
-                handleFilterMovie={handleFilterMovie}
-                filterMovie={filterMovie}
-                handleFilterYear={handleFilterYear}
-                years={getYear()}
-              />
-              <MovieSceneList movies={movieFilters} />
-            </>
-          }
-        />
-        <Route
-          path="/movie/:movieId"
-          element={<MovieSceneDetail user={movieFound} />}
-        />
-      </Routes>
-      ;
+      <div className="section1">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Filters
+                  handleFilterMovie={handleFilterMovie}
+                  filterMovie={filterMovie}
+                  handleFilterYear={handleFilterYear}
+                  years={getYear()}
+                />
+                <MovieSceneList movies={movieFilters} />
+              </>
+            }
+          />
+          <Route
+            path="/movie/:movieId"
+            element={<MovieSceneDetail user={movieFound} />}
+          />
+        </Routes>
+      </div>
     </>
   );
 };
@@ -105,3 +115,5 @@ export default App;
 // 23 - hago el componente de routes. Dentro meto el path / y en su element va lo que tenia hasta ahora (componente filters y movieScenlist)
 // 24 - hago la segunda ruta (que es variable) para MovieSceneDetail
 // 25 - MovieSceneDetail necesita props que hagan referencia a la pelicula a pintar. Hay que sacarlo de la URL. Hay que usar matchPath y useLocation
+// 26 - gestiono local storage. Hago archivo.js y lo importo arriba
+// 27 - cambio useEffect para que compruebe si hay algo en local storage antes de todo

@@ -1,5 +1,6 @@
 function FilterMovie(props) {
   const handleMovieSearch = (ev) => {
+    ev.preventDefault();
     props.handleFilterMovie(ev.target.value);
   };
   return (
