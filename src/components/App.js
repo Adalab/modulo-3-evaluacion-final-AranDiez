@@ -17,13 +17,16 @@ const App = () => {
   const handleFilterMovie = (value) => {
     setFilterMovie(value);
   };
-  const movieFilters = dataMovies.filter((movie) => {
-    return movie.movie.toLowerCase().includes(filterMovie.toLowerCase());
+  const movieFilters = dataMovies.filter((item) => {
+    return item.title.toLowerCase().includes(filterMovie.toLowerCase());
   });
   return (
     <>
-      <Filters handleFilterMovie={handleFilterMovie} />
-      <MovieSceneList movies={dataMovies} />
+      <Filters
+        handleFilterMovie={handleFilterMovie}
+        filterMovie={filterMovie}
+      />
+      <MovieSceneList movies={movieFilters} />
     </>
   );
 };
