@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import '../styles/App.scss';
+import { Routes, Route } from 'react-router-dom';
+import { matchPath, useLocation } from 'react-router';
 import getApiData from '../services/moviesApi';
 import MovieSceneList from './MovieSceneList';
 import Filters from './Filters';
+import MovieSceneDetail from './MovieSceneDetail';
 
 const App = () => {
   const [dataMovies, setDataMovies] = useState([]);
@@ -41,15 +44,36 @@ const App = () => {
     });
     return uniqueYear;
   };
+  const { pathname } = useLocation();
+  const dataPath = matchPath('/movie/:movieId', pathname);
+
+  const movieId = dataPath !== null ? dataPath.params.movieId : null;
+  const movieFound = dataMovies.find((movie) => movie.id === parseInt(movieId));
+
   return (
     <>
-      <Filters
-        handleFilterMovie={handleFilterMovie}
-        filterMovie={filterMovie}
-        handleFilterYear={handleFilterYear}
-        years={getYear()}
-      />
-      <MovieSceneList movies={movieFilters} />
+      <h1 className="title">Owen Wilson WOW</h1>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Filters
+                handleFilterMovie={handleFilterMovie}
+                filterMovie={filterMovie}
+                handleFilterYear={handleFilterYear}
+                years={getYear()}
+              />
+              <MovieSceneList movies={movieFilters} />
+            </>
+          }
+        />
+        <Route
+          path="/movie/:movieId"
+          element={<MovieSceneDetail user={movieFound} />}
+        />
+      </Routes>
+      ;
     </>
   );
 };
@@ -75,3 +99,9 @@ export default App;
 // 17 - creamos filterYear como array vacio. creo handleFilterYear y es la encargada de modificar la variable de estado (filterYear) que contenga los años por los que quiero filtrar
 // 18 - uso un spread para decir que meta lo que habia mas lo que se manda
 // 19 - hago un condicional que diga que si la longitud es 0 que nos return all (true). Si no, es que hay algo guardado, return los años que tengan incluido el año seleccionado.
+// 20 - hacemos routes para poder clickar en cada peli y que salga en pantalla completa. He creado MovieSceneDetail
+// 21 - instalo router dom. tenemos que importar routes (define el listado de routes) y matchPath y useLocation para coger datos de las rutas que estoy manejando
+// 22 - => MovieSceneDetail
+// 23 - hago el componente de routes. Dentro meto el path / y en su element va lo que tenia hasta ahora (componente filters y movieScenlist)
+// 24 - hago la segunda ruta (que es variable) para MovieSceneDetail
+// 25 - MovieSceneDetail necesita props que hagan referencia a la pelicula a pintar. Hay que sacarlo de la URL. Hay que usar matchPath y useLocation
