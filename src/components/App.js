@@ -23,7 +23,7 @@ const App = () => {
   return (
     <>
       <Filters handleFilterMovie={handleFilterMovie} />
-      <MovieSceneList movies={movieFilters} />
+      <MovieSceneList movies={dataMovies} />
     </>
   );
 };
@@ -39,4 +39,4 @@ export default App;
 // 7 - He creado filters.js para gestionar filtros
 // 8 - Creamos una variable de estado donde yo filtro por pelicula. Se modifica cuando escribe en el input la usuaria
 // 9 - => FilterMovie
-// 10 - userlist es quien pionta, necesitamos mandarle los datos ya filtrados. Creamos la constante movieFilter y ahi haremos los filters y el map.
+// 10 - userlist es quien pinta, necesitamos mandarle los datos ya filtrados. Creamos la constante movieFilters y ahi haremos los filters.
