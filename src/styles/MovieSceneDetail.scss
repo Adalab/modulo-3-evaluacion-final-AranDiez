@@ -1,12 +1,60 @@
 @import '../styles/variables';
+.main__section2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  align-content: center;
+  list-style: none;
+  border: solid $darkBlue 0.125rem;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  padding: 1em;
+  line-height: 1.5em;
+  padding: 0.625rem;
+  background-color: $extraLightBlue;
+  overflow: hidden;
+  margin: 0 auto;
+  width: 300px;
+  margin-bottom: 10px;
+  @media all and (min-width: 768px) {
+    font-size: 1.4rem;
+  }
+}
+
 .main__section2--img {
-  width: 100px;
+  width: 6.25rem;
+  border: solid $darkBlue 0.125rem;
+  border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
+  line-height: 1.5em;
+}
+.main__section2--details {
+  margin-bottom: 0.625rem;
 }
 .main__section2--back {
   text-decoration: none;
-  font-size: 1.25rem;
   color: $darkBlue;
   border: solid $darkBlue 0.125rem;
   padding: 0.625rem;
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 100px;
+  font-size: 1.4rem;
+}
+.main__section2--back:hover {
+  background-color: $darkBlue;
+  color: $lightBlue;
+}
+.main__section2--audio {
+  text-decoration: none;
+  color: $darkBlue;
+  border: solid $darkBlue 0.125rem;
+  padding: 0.625rem;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+.main__section2--audio:hover {
+  background-color: $darkBlue;
+  color: $lightBlue;
 }

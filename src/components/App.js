@@ -58,8 +58,6 @@ const App = () => {
   const movieId = dataPath !== null ? dataPath.params.id : null;
   const movieFound = movieFilters.find((item) => item.id === parseInt(movieId));
 
-  console.log(movieFound);
-
   return (
     <>
       <h1 className="main__title">
