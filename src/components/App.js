@@ -52,14 +52,14 @@ const App = () => {
     });
     return uniqueYear;
   };
-  // ------------------------------------------------------ROUTES
+
   const { pathname } = useLocation();
   const dataPath = matchPath('/movie/:id', pathname);
   const movieId = dataPath !== null ? dataPath.params.id : null;
   const movieFound = movieFilters.find((item) => item.id === parseInt(movieId));
-  // console.log({ movieFilters, movieId, movieFound });
 
-  // ------------------------------------------------------ROUTES
+  console.log(movieFound);
+
   return (
     <>
       <h1 className="main__title">

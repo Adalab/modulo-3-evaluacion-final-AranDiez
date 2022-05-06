@@ -12,7 +12,7 @@ const getApiData = () => {
           full_line: movie.full_line,
           year: movie.year,
           director: movie.director,
-          audio: movie.video.audio,
+          audio: movie.audio,
         };
       });
       return dataClean;

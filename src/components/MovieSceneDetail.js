@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom';
 import '../styles/MovieSceneDetail.scss';
 function MovieSceneDetail(props) {
-  console.log(props);
   return (
     <section>
-      {/* <img className="img" alt={props.movie.movie} src={props.movie.poster} />
+      <img
+        className="main__section2--img"
+        alt={props.movie.movie}
+        src={props.movie.poster}
+      />
       <h2>{props.movie.title}</h2>
       <p>"{props.movie.full_line}"</p>
       <p>{props.movie.director}</p>
-      <p>{props.movie.audio}</p> */}
-      <p>Holi</p>
+      <p>{props.movie.audio}</p>
       <Link to="/" className="main__section2--back">
         Back to list
       </Link>
