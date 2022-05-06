@@ -59,7 +59,7 @@ const App = () => {
 
   const movieId = dataPath !== null ? dataPath.params.movieId : null;
   const movieFound = dataMovies.find((movie) => movie.id === movieId);
-
+  console.log(movieFound);
   return (
     <>
       <h1 className="main__title">Owen Wilson WOW</h1>

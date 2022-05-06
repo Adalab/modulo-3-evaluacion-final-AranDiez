@@ -1,3 +1,4 @@
+@import '../styles/variables';
 .main__section1 {
 }
 .main__section1--movies {
@@ -19,14 +20,15 @@
   align-items: center;
   list-style: none;
   text-align: center;
-  border: solid rgb(4, 36, 46) 0.125rem;
+  border: solid $darkBlue 0.125rem;
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
   padding: 1em;
   line-height: 1.5em;
   padding: 0.625rem;
+  background-color: $extraLightBlue;
 }
 
 .main__section1--movie:hover {
   transform: translateY(-10px) rotate(1deg);
-  box-shadow: 3px 15px 8px -10px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 15px 8px -10px $darkBlue;
 }

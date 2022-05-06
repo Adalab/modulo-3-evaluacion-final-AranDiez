@@ -1,4 +1,5 @@
 import '../styles/MovieSceneItem.scss';
+import { Link, Route, Routes } from 'react-router-dom';
 
 function MovieSceneItem(props) {
   return (
@@ -12,6 +13,9 @@ function MovieSceneItem(props) {
         {props.movie.title} - {props.movie.year}
       </h2>
       <p className="main__section1--movieQuote">"{props.movie.full_line}"</p>
+      <Link to="/movie/:movieId" className="main__section1--movieDetails">
+        Details
+      </Link>
     </>
   );
 }
